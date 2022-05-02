@@ -37,5 +37,17 @@ public class FlightController {
 		
 		return new ModelAndView("addFlight");
 	}
+	@RequestMapping(value="/remove")
+	public ModelAndView removeFlight(HttpServletResponse response) throws IOException{
+		return new ModelAndView("removeFlight");
+	}
+	@RequestMapping(value="/removeFlight")
+	public ModelAndView removeFlightdetails(HttpServletResponse response,HttpServletRequest request) throws IOException{
+		
+		String flight_id = request.getParameter("flight_id");
+		String sql = "delete from flight where flight_id =?";
+		template.update(sql,flight_id);
+		return new ModelAndView("removeFlight");
+	}
 	
 }
